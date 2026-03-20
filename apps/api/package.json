@@ -2,26 +2,11 @@
   "name": "api",
   "version": "1.0.0",
   "scripts": {
-    "build": "tsc",
-    "start:prod": "node dist/main",
-    "start:dev": "tsc --watch"
+    "start": "node server.js",
+    "start:prod": "node server.js"
   },
   "dependencies": {
-    "@nestjs/common": "10.3.0",
-    "@nestjs/core": "10.3.0",
-    "@nestjs/platform-express": "10.3.0",
-    "@nestjs/graphql": "12.1.1",
-    "@nestjs/apollo": "12.1.0",
-    "@nestjs/config": "3.1.1",
-    "graphql": "16.8.1",
-    "apollo-server-express": "3.13.0",
-    "reflect-metadata": "0.1.14",
-    "rxjs": "7.8.1",
-    "@prisma/client": "5.22.0"
-  },
-  "devDependencies": {
-    "typescript": "5.3.3",
-    "@types/node": "20.11.5",
-    "@nestjs/cli": "10.3.0"
+    "express": "4.18.2",
+    "cors": "2.8.5"
   }
 }
