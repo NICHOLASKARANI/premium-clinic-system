@@ -49,7 +49,7 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(🚀 Backend running on port );
-  console.log(📍 Health check: http://localhost:/health);
-  console.log(📍 GraphQL endpoint: http://localhost:/graphql);
+  console.log(Backend running on port );
+  console.log(Health check: http://localhost:/health);
+  console.log(GraphQL endpoint: http://localhost:/graphql);
 });
