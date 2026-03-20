@@ -1,11 +1,14 @@
-﻿import React from 'react';
+﻿'use client';
+
+import { useState, useEffect } from 'react';
 
 export default function Home() {
-  const [backendStatus, setBackendStatus] = React.useState('Checking...');
-  const [backendData, setBackendData] = React.useState(null);
+  const [backendStatus, setBackendStatus] = useState('Checking...');
+  const [backendData, setBackendData] = useState(null);
 
-  React.useEffect(() => {
-    fetch(process.env.NEXT_PUBLIC_API_URL + '/health')
+  useEffect(() => {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://clinic-backend-1dxu.onrender.com';
+    fetch(apiUrl + '/health')
       .then(res => res.json())
       .then(data => {
         setBackendStatus('Connected');
