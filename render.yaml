@@ -1,0 +1,20 @@
+﻿services:
+  - type: web
+    name: clinic-api
+    runtime: node
+    repo: https://github.com/NICHOLASKARANI/premium-clinic-system
+    plan: free
+    region: oregon
+    branch: main
+    rootDir: apps/api
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:prod
+    envVars:
+      - key: DATABASE_URL
+        value: postgresql://postgres:3f4a170871994ad69c189335fca2e9ba@localhost:5432/clinic_db?schema=public
+      - key: JWT_SECRET
+        value: your-super-secret-jwt-key
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 4000
