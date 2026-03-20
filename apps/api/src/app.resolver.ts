@@ -3,7 +3,7 @@
 @Resolver()
 export class AppResolver {
   @Query(() => String)
-  health() {
+  health(): string {
     return 'API is running!';
   }
 }
