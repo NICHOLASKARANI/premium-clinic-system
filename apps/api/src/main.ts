@@ -4,8 +4,7 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
-  await app.listen(4000);
-  console.log('Backend is running on: http://localhost:4000');
-  console.log('GraphQL Playground: http://localhost:4000/graphql');
+  await app.listen(process.env.PORT || 4000);
+  console.log('Backend running on port', process.env.PORT || 4000);
 }
 bootstrap();
