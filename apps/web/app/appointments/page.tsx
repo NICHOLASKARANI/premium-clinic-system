@@ -15,27 +15,11 @@ export default function AppointmentsPage() {
 
   const fetchAppointments = async () => {
     try {
+      const query = 'query { appointments { appointments { id patient { firstName lastName } startTime status type } } }'
       const response = await fetch(API_URL + '/graphql', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          query: \
-            query {
-              appointments {
-                appointments {
-                  id
-                  patient {
-                    firstName
-                    lastName
-                  }
-                  startTime
-                  status
-                  type
-                }
-              }
-            }
-          \
-        })
+        body: JSON.stringify({ query })
       })
       const data = await response.json()
       if (data.data) {
@@ -61,7 +45,7 @@ export default function AppointmentsPage() {
 
       <div className="bg-white rounded-xl shadow-lg overflow-hidden">
         {loading ? (
-          <div className="text-center py-8">Loading...</div>
+          <div className="text-center py-8">Loading appointments...</div>
         ) : appointments.length === 0 ? (
           <div className="text-center py-8">
             <p>No appointments found. Click "New Appointment" to get started.</p>

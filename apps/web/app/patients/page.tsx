@@ -15,24 +15,11 @@ export default function PatientsListPage() {
 
   const fetchPatients = async () => {
     try {
+      const query = 'query { patients { patients { id firstName lastName email phone } } }'
       const response = await fetch(API_URL + '/graphql', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          query: \
-            query {
-              patients {
-                patients {
-                  id
-                  firstName
-                  lastName
-                  email
-                  phone
-                }
-              }
-            }
-          \
-        })
+        body: JSON.stringify({ query })
       })
       const data = await response.json()
       if (data.data) {
@@ -58,7 +45,7 @@ export default function PatientsListPage() {
 
       <div className="bg-white rounded-xl shadow-lg overflow-hidden">
         {loading ? (
-          <div className="text-center py-8">Loading...</div>
+          <div className="text-center py-8">Loading patients...</div>
         ) : patients.length === 0 ? (
           <div className="text-center py-8">
             <p>No patients found. Click "Add Patient" to get started.</p>
@@ -70,7 +57,7 @@ export default function PatientsListPage() {
                 <th className="px-6 py-3 text-left">Name</th>
                 <th className="px-6 py-3 text-left">Email</th>
                 <th className="px-6 py-3 text-left">Phone</th>
-              </tr>
+               </tr>
             </thead>
             <tbody>
               {patients.map((patient: any) => (
