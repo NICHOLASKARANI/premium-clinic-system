@@ -2,11 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { Calendar, Clock, Plus, Video, CheckCircle, XCircle } from 'lucide-react'
 
 export default function AppointmentsPage() {
-  const [appointments, setAppointments] = useState<any[]>([])
+  const [appointments, setAppointments] = useState([])
   const [loading, setLoading] = useState(true)
 
   const API_URL = 'https://clinic-backend-1dxu.onrender.com'
@@ -17,11 +16,11 @@ export default function AppointmentsPage() {
 
   const fetchAppointments = async () => {
     try {
-      const response = await fetch(\/graphql, {
+      const response = await fetch(API_URL + '/graphql', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          query: \
+          query: 
             query {
               appointments {
                 appointments {
@@ -34,12 +33,11 @@ export default function AppointmentsPage() {
                   endTime
                   status
                   type
-                  reason
                   isTelehealth
                 }
               }
             }
-          \
+          
         })
       })
       const data = await response.json()
@@ -53,7 +51,7 @@ export default function AppointmentsPage() {
     }
   }
 
-  const getStatusColor = (status: string) => {
+  const getStatusColor = (status) => {
     switch (status) {
       case 'SCHEDULED': return 'bg-yellow-100 text-yellow-800'
       case 'CONFIRMED': return 'bg-green-100 text-green-800'
@@ -101,7 +99,7 @@ export default function AppointmentsPage() {
                     <h3 className="text-lg font-semibold text-gray-800">
                       {apt.patient?.firstName} {apt.patient?.lastName}
                     </h3>
-                    <span className={px-2 py-1 text-xs font-medium rounded-full \}>
+                    <span className={'px-2 py-1 text-xs font-medium rounded-full ' + getStatusColor(apt.status)}>
                       {apt.status}
                     </span>
                     {apt.isTelehealth && (
